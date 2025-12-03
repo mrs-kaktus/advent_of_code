@@ -40,8 +40,7 @@ def dial_ends_at_zero(rotations, distances, starting_point):
             zero_counter += 1
     return zero_counter
     
-print (f'Number of dials ending at zero: {dial_ends_at_zero(rot, dist, 50)}')
-
+print(f'Number of dials ending at zero: {dial_ends_at_zero(rot, dist, 50)}')
 
 # Part 2
 
@@ -68,4 +67,4 @@ for i in range(len(rot)):
     point = starting_point + rotation_to_plus_minus(rot[i],dist[i])
     starting_point = point % 100
         
-print (f'Number of dials ending at zero: {clicks_at_zero}')
+print(f'Number of dials ending at zero: {clicks_at_zero}')
