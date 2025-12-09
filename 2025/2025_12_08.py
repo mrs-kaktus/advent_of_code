@@ -33,8 +33,6 @@ with open("2025/additional_files/junction_boxes.txt", "r") as f:
     for line in f:
         junction_boxes.append([int(e) for e in line.split(',')])
 
-# print(junction_boxes[0:10])
-
 # join circuits if there is common junction box
 def update_circuits_join_intersecting_circuits(circuits):   
     for ind, cir in enumerate(circuits):
@@ -52,7 +50,6 @@ def update_circuits_join_intersecting_circuits(circuits):
 def connect_boxes_to_circuits(box_1,box_2, circuits):
     if len(circuits) == 0: # no existing circuits
         circuits.append([box_1,box_2])
-        # print(circuits)
     elif len(circuits) > 0: # check if pair of boxes are connected in other circuits 
         is_added_box_to_any_circuit = False
         for cir in circuits:
