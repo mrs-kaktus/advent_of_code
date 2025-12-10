@@ -86,7 +86,6 @@ for pair in list_of_boxes_combination:
 # connecting boxes to circuit(s)
 circuits = []
 sorted_dist = sorted(distances_with_coords)
-is_added_box_to_any_circuit = False
 for dist_n_coords in sorted_dist[0:1000]:
     circuits = connect_boxes_to_circuits(dist_n_coords[1],dist_n_coords[2], circuits)
 
@@ -98,6 +97,18 @@ for dist_n_coords in sorted_dist[0:1000]:
 # what do you get if you multiply together the sizes of the three largest circuits?
 three_largest_circuits = sorted([len(x) for x in circuits],reverse=True)[0:3]
 product = numpy.prod(three_largest_circuits)
-print(product)
+
+print(f'product of 3 largest circuits: {product}')
 
 # Part 2
+
+circuits = []
+x_coords = []
+for dist_n_coords in sorted_dist:
+    circuits = connect_boxes_to_circuits(dist_n_coords[1],dist_n_coords[2], circuits)
+    if len(circuits) == 1 and len(junction_boxes) == len(set(itertools.chain(*circuits))):
+        x_coords = [dist_n_coords[1][0],dist_n_coords[2][0]]
+        break
+
+print(f'product of x coords of last 2 junction boxes: {numpy.prod(x_coords)}')
+
