@@ -39,6 +39,8 @@ def split_beam(beams_pos, splitters_pos):
                 break
             else:
                 continue
+        else: # if beam is not splitted, it continues 
+            new_beams.extend([beam])
     new_beams_pos = list(set(new_beams)) # remove duplicities
     return [new_beams_pos, split_counter]
 
