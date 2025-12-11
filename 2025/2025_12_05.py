@@ -84,5 +84,3 @@ while i < len(fresh_ranges)-1:
     i = result[1]
 
 print(f'number of fresh ingredient IDs: {count_ids}')
-
-# 348115621205535
