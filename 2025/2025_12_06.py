@@ -25,7 +25,7 @@ def solve_problem(operator,numbers):
     if operator == '+':
         return sum(numbers)
     elif operator == '*':
-        return numpy.prod(numbers)
+        return int(numpy.prod(numbers))
 
 grand_total = 0
 for operator, numbers in itertools.zip_longest(operators,transposed_numbers):
@@ -35,31 +35,12 @@ print(f'grand total of solved problems: {grand_total}')
 
 # Part 2
 
-example = [
-    '123 328  51 64 ',
-    ' 45 64  387 23 ',
-    '  6 98  215 314',
-    '*   +   *   +  '
-]
-# numbers_str = []
-# operators = []
-
-# for line in example:
-#     if '+' in line:
-#         operators = list(reversed(line.split()))
-#     else:
-#         numbers_str.append((' ' + line)[::-1]) # removing whitespace at the end of string; the reverse string and add white space at beginning (to recognise end of problem) 
-
-# def read_number_in_column(numbers_str):
-#     numbers = []
-#     temp_list_of_numbers = []
-#     for n1,n2,n3 in zip(numbers_str[0],numbers_str[1],numbers_str[2]):
-#         if (n1 + n2 + n3).strip().isdigit():
-#             temp_list_of_numbers.append(int(n1 + n2 + n3))
-#         else:
-#             numbers.append(temp_list_of_numbers)
-#             temp_list_of_numbers = []
-#     return numbers
+# example = [
+#     '123 328  51 64 ',
+#     ' 45 64  387 23 ',
+#     '  6 98  215 314',
+#     '*   +   *   +  '
+# ]
 
 numbers_str = []
 operators = []
@@ -68,7 +49,7 @@ with open("2025/additional_files/cephalopod_math_homework.txt", "r") as f:
         if '+' in line:
             operators = list(reversed(line.split()))
         else:
-            numbers_str.append(' ' + line.rstrip()[::-1]) # removing whitespace at the end of string; the reverse string and add white space at beginning (to recognise end of problem) 
+            numbers_str.append((' ' + line).rstrip()[::-1]) # removing whitespace at the end of string; the reverse string and add white space at beginning (to recognise end of problem) 
 
 def read_number_in_column(numbers_str):
     numbers = []
@@ -88,6 +69,3 @@ for operator, numbers in itertools.zip_longest(operators, numbers_from_column):
     grand_total += solve_problem(operator,numbers)
 
 print(f'grand total of solved problems: {grand_total}')
-
-# 4825477245843272 too high
-
