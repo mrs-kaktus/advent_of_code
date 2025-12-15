@@ -1,5 +1,4 @@
 import itertools
-import numpy
 
 # Part 1
 # input
