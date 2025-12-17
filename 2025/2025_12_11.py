@@ -40,7 +40,6 @@ matrix.append([0]*len(machine_names))
 
 input = [0]*len(machine_names)
 input[machine_names.index('you')] = 1
-input = np.transpose(input)
 
 counter = 0
 while any(i != 0 for i in input):
@@ -83,62 +82,16 @@ print(f'number of paths: {counter}')
 #     matrix.append(m)
 # matrix.append([0]*len(machine_names))
 
+machines_in_path = ['svr', 'fft', 'dac', 'out']
+number_of_paths = []
+for machine1, machine2 in zip(machines_in_path[:-1], machines_in_path[1:]):
+    input = [0]*len(machine_names)
+    input[machine_names.index(machine1)] = 1
+    counter = 0
+    ind = machine_names.index(machine2)
+    while any(i != 0 for i in input):
+        input = np.matmul(input,matrix)
+        counter += input[ind]
+    number_of_paths.append(counter)
 
-# from svr to out
-input = [0]*len(machine_names)
-input[machine_names.index('svr')] = 1
-input = np.transpose(input)
-
-counter = 0
-ind = machine_names.index('out')
-while any(i != 0 for i in input):
-    input = np.matmul(input,matrix)
-    counter += input[ind]
-print('from svr to out')
-print(counter)
-
-
-#  from srv to fft
-input = [0]*len(machine_names)
-input[machine_names.index('svr')] = 1
-input = np.transpose(input)
-
-counter = 0
-ind = machine_names.index('fft')
-while any(i != 0 for i in input):
-    input = np.matmul(input,matrix)
-    counter += input[ind]
-print('from svr to fft')
-print(counter)
-from_svr_to_fft = counter
-
-# from fft to dac
-input = [0]*len(machine_names)
-input[machine_names.index('fft')] = 1
-input = np.transpose(input)
-
-counter = 0
-ind = machine_names.index('dac')
-while any(i != 0 for i in input):
-    input = np.matmul(input,matrix)
-    counter += input[ind]
-print('from fft to dac')
-print(counter)
-from_fft_to_dac = counter
-
-# from dac to out
-input = [0]*len(machine_names)
-input[machine_names.index('dac')] = 1
-input = np.transpose(input)
-
-counter = 0
-ind = machine_names.index('out')
-while any(i != 0 for i in input):
-    input = np.matmul(input,matrix)
-    counter += input[ind]
-print('from dac to out')
-print(counter)
-from_dac_to_out = counter
-
-result = from_svr_to_fft * from_fft_to_dac * from_dac_to_out
-print(result)
+print(f'number of paths: {np.prod(number_of_paths)}')
