@@ -56,5 +56,8 @@ for line in tachyon_manifold[1:]:
     else:
         continue
 
-print(split_counter)
-# 1259 too low
+print(f'number of splits: {split_counter}')
+
+# Part 2
+
+ 

@@ -1,5 +1,5 @@
-import numpy
-import itertools
+import numpy as np
+import itertools as it
 
 # Part 1
 
@@ -25,10 +25,10 @@ def solve_problem(operator,numbers):
     if operator == '+':
         return sum(numbers)
     elif operator == '*':
-        return int(numpy.prod(numbers))
+        return int(np.prod(numbers))
 
 grand_total = 0
-for operator, numbers in itertools.zip_longest(operators,transposed_numbers):
+for operator, numbers in it.zip_longest(operators,transposed_numbers):
     grand_total += solve_problem(operator,numbers)
 
 print(f'grand total of solved problems: {grand_total}')
@@ -65,7 +65,7 @@ def read_number_in_column(numbers_str):
 numbers_from_column = read_number_in_column(numbers_str)
 
 grand_total = 0
-for operator, numbers in itertools.zip_longest(operators, numbers_from_column):
+for operator, numbers in it.zip_longest(operators, numbers_from_column):
     grand_total += solve_problem(operator,numbers)
 
 print(f'grand total of solved problems: {grand_total}')
